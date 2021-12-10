@@ -24,6 +24,7 @@ export class nomencladorActivo extends connect(store, MEDIA_CHANGE, SCREEN, NOME
         this.area = "body";
         this.items = [];
         this.itemsFiltrados = [];
+        this.orderActual = "Codigo";
     }
 
     static get properties() {
@@ -71,6 +72,12 @@ export class nomencladorActivo extends connect(store, MEDIA_CHANGE, SCREEN, NOME
                 grid-template-columns: 4vw 57vw 10vw 21vw;
                 padding: 0.3rem !important;
             }
+            .ordena {
+                cursor: pointer;
+            }
+            div[selected] {
+                color: var(--primary-color);
+            }
         `;
     }
 
@@ -80,10 +87,10 @@ export class nomencladorActivo extends connect(store, MEDIA_CHANGE, SCREEN, NOME
                 <div class="grid row contenedor">
                     <busqueda-component></busqueda-component>
                     <div class="cabecera grid columnas">
-                        <div class="ordena" @click=${this.ordenar} .order=${"Codigo"}>Código</div>
-                        <div class="ordena" @click=${this.ordenar} .order=${"Descripcion"}>Descripción</div>
-                        <div class="ordena" @click=${this.ordenar} .order=${"NivelAutorizacion"}>Nivel de autorización</div>
-                        <div class="ordena" @click=${this.ordenar} .order=${"Nomenclador"}>Nomenclador</div>
+                        <div class="ordena" ?selected=${this.orderActual == "Codigo"} @click=${this.ordenar} .order=${"Codigo"}>Código</div>
+                        <div class="ordena" ?selected=${this.orderActual == "Descripcion"} @click=${this.ordenar} .order=${"Descripcion"}>Descripción</div>
+                        <div class="ordena" ?selected=${this.orderActual == "NivelAutorizacion"} @click=${this.ordenar} .order=${"NivelAutorizacion"}>Nivel de autorización</div>
+                        <div class="ordena" ?selected=${this.orderActual == "Nomenclador"} @click=${this.ordenar} .order=${"Nomenclador"}>Nomenclador</div>
                     </div>
                     <div class="nomencla inner-grid start">
                         ${this.itemsFiltrados.map((item) => {
@@ -141,6 +148,7 @@ export class nomencladorActivo extends connect(store, MEDIA_CHANGE, SCREEN, NOME
         }
         if (name == ORDENAR) {
             let orden = state.ui.ordenar.order;
+            this.orderActual = orden;
             this.itemsFiltrados = this.itemsFiltrados.sort((a, b) => {
                 if (a[orden] > b[orden]) return 1;
                 if (a[orden] < b[orden]) return -1;

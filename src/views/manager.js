@@ -61,6 +61,7 @@ export class viewManager extends connect(store, MEDIA_CHANGE, SCREEN)(LitElement
     render() {
         return html`
             <menu-principal id="menu" class="header"></menu-principal>
+            <spinner-loading type="spinner3"></spinner-loading>
             <nomenclador-activo id="nomencla"></nomenclador-activo>
         `;
     }

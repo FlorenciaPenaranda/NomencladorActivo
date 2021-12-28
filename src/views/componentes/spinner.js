@@ -3,9 +3,11 @@
 ///DEMO EN:
 ///https://codepen.io/Paolo-Duzioni/pen/ZoRabJ spinner de 1 a 8
 ///https://codepen.io/declandewet/pen/aivLf spinner 9
+
 import { html, LitElement } from "lit-element";
 import { store } from "../../redux/store";
 import { connect } from "@brunomon/helpers/connect";
+
 export class SpinnerLoading extends connect(store, "api.loading")(LitElement) {
     constructor() {
         super();

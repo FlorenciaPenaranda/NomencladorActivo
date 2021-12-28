@@ -25,8 +25,8 @@ module.exports = merge(common, {
         }),
         new webpack.DefinePlugin({
             SERVICE_LOGIN_URL: JSON.stringify("https://www.uocra.net/intranet/promocionsocial/MotivosCategorias"),
-            SERVICE_URL: JSON.stringify("http://uocradevnet/NomencladorActivo"),
-            SERVICE_CA_URL: JSON.stringify("http://www.uocra.net/CentroAutorizador"),
+            SERVICE_URL: JSON.stringify("https://www.uocra.net/ASMservicios"),
+            SERVICE_CA_URL: JSON.stringify("https://www.uocra.net/CentroAutorizador"),
         }),
     ],
 });

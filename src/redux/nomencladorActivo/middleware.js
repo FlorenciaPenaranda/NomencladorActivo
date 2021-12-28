@@ -1,6 +1,6 @@
 import { nomencaldorActivoFetch } from "../fetchs.js";
 import { GET, GET_SUCCESS, GET_ERROR } from "./actions";
-import { showSpinner, hideSpinner, showError } from "../ui/actions";
+import { showSpinner, hideSpinner, showError } from "../api/actions";
 import { apiRequest, apiUpdate, apiDelete, apiAdd, apiAction } from "../api/actions";
 import { goTo } from "../routing/actions.js";
 
@@ -11,7 +11,8 @@ export const get =
         next(action);
         if (action.type === GET) {
             //dispatch(apiRequest( , action.options, GET_SUCCESS, GET_ERROR));
-            fetch("http://uocradevnet/ASMServicios/odata/vNomencladorActivo", {
+            dispatch(showSpinner());
+            fetch(SERVICE_URL + "/odata/vNomencladorActivo", {
                 method: "GET",
                 headers: {
                     "Content-Type": "aplication/json",
@@ -20,6 +21,7 @@ export const get =
             })
                 .then((res) => res.json())
                 .then((response) => {
+                    dispatch(hideSpinner());
                     dispatch({
                         type: GET_SUCCESS,
                         payload: {
@@ -27,7 +29,10 @@ export const get =
                         },
                     });
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => {
+                    dispatch(hideSpinner());
+                    console.error(error);
+                });
         }
     };
 

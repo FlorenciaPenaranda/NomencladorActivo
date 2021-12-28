@@ -18,9 +18,9 @@ module.exports = merge(common, {
     },
     plugins: [
         new webpack.DefinePlugin({
-            SERVICE_LOGIN_URL: JSON.stringify("http://200.80.227.180/vnomencladoractivo"),
+            SERVICE_LOGIN_URL: JSON.stringify("http://200.80.227.180/ASMservicios"),
             /*SERVICE_LOGIN_URL: JSON.stringify("https://www.uocra.net/intranet/promocionsocial/MotivosCategorias"),*/
-            SERVICE_URL: JSON.stringify("http://200.80.227.180/vnomencladoractivo"),
+            SERVICE_URL: JSON.stringify("http://200.80.227.180/ASMservicios"),
             SERVICE_CA_URL: JSON.stringify("http://localhost/CentroAutorizador"),
         }),
     ],
